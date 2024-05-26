@@ -1,0 +1,27 @@
+.testimonial{
+    background-color: #F1EFFF;
+}
+
+.testimonial .doubleline{
+    display: block;
+  
+    margin: -5rem auto 3rem;
+    transform: rotate(90deg);
+}
+
+
+
+.testimonial .title::after{
+    display: block;
+    content: "";
+    min-height: 2px;
+    min-width: 50px;
+    max-width: 50px;
+    max-height: 2px;
+    background-color: var(--color);
+}
+
+.testimonial .card{
+    height: 20rem;
+    box-shadow: 5px 5px 3px var(--color)
+}

@@ -1,0 +1,12 @@
+.hire{
+    height: 100vh;
+    background: #DAE2FF url(./../../../public/images/class1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hire h2{
+    color: #000066;
+    font-size: 3rem;
+    font-weight: bold;
+}

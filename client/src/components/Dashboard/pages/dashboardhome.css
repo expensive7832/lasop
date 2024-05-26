@@ -1,0 +1,73 @@
+
+.calendar input::-webkit-calendar-picker-indicator{
+    background-image: url(./../../../assets/calendar-search.png)!important;
+}
+.calendar select{
+   border: none;
+}
+.calendar select:active{
+   outline: none;
+}
+
+.dashboard-home .container-fluid:first-child{
+    border-bottom: 1px solid #0011f1;
+}
+
+.recent-activities .col-md-4 .card-body .first{
+    background-color: #DADBFE;
+    margin: .6rem 0;
+    padding: .3rem;
+    border-radius: .3rem;
+}
+.recent-activities .col-md-4 .card-body .ind{
+display: flex;
+justify-content: space-between;
+}
+.recent-activities .col-md-4 .card-body .ind small::before{
+content: ""!important;
+}
+
+
+
+
+.recent-activities .col-md-4 .card img{
+    width: 1.3rem;
+    object-fit: contain;
+}
+.recent-activities .col-md-4 .card p{
+    font-size: .8rem;
+    font-weight: bold;
+}
+.recent-activities .col-md-4 .card-body small{
+    font-size: .8rem;
+}
+.recent-activities .col-md-4 .card-body small:first-child::before{
+    content: url(./../../../assets/bookmark-2.png);
+    margin: .1rem .3rem;
+}
+.recent-activities .col-md-4 .card-body small:last-child::before{
+    content: url(./../../../assets/calendar.png);
+    margin: .1rem .3rem;
+}
+
+.recent-activities .col-md-4 .right p{
+    color: #010A73;
+}
+.recent-activities .col-md-4 .right .share{
+    color: #010A73;
+    margin: auto;
+}
+.recent-activities .col-md-4 .right img{
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+}
+
+.recent-activities .col-md-4:last-child .right{
+    border: 1px solid #010A73;
+    border-radius: .5rem;
+    flex: 40%;
+    
+    
+    
+}

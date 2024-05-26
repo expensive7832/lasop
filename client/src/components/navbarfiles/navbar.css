@@ -1,0 +1,105 @@
+.logo{
+    width: 8rem;
+    height: 8rem;
+    object-fit: contain;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none!important;
+}
+
+
+nav{
+    background-color: #DAE2FF;
+    
+}
+
+nav ul p, nav ul a{
+   font-size: 1rem;
+   color: #444;
+   font-weight: bold;
+   letter-spacing: 1px;
+}
+.courselink{
+   font-size: 1rem;
+   color: #444;
+   font-weight: 400;
+   letter-spacing: 1px;
+}
+
+.smallscreen{
+    background-color: #fff;
+    box-shadow: 0 0 2px #d1d1d1;
+    height: calc(100% );
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    right: 0;
+    padding: 1rem;
+    width: 30vw;
+    
+}
+
+.smallscreen li, .smallscreen p{
+    margin: 3rem 0;
+    text-align: center;
+    font-size: 1.3rem;
+    text-align: left;
+}
+
+
+.dropdown .row a::after{
+    content: "";
+    min-height: 3px;
+    width: 1rem;
+    display: block;
+
+    background-color: #444;
+    
+}
+
+.dropdown-text{
+    cursor: pointer;
+}
+
+.dropdown-text::after{
+    
+    color: #444;
+    margin: 2px;
+    font-size: 1rem;
+
+}
+
+.userdropdown{
+    min-width: fit-content;
+    padding: 5rem;
+    margin: auto;
+    z-index: 100;
+}
+
+
+@media (min-width: 576px) {
+
+    .smallscreen{
+        display: none;
+        
+    }
+    
+}
+@media (max-width: 576px) {
+
+    .smallscreen{
+       width: 80vw;
+       display: none;
+        
+    }
+
+    .courselink{
+        margin: 1rem 0;
+    }
+    
+}

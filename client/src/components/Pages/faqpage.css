@@ -1,0 +1,53 @@
+.faqpage .background{
+    background: linear-gradient(104.24deg, #000066 22.75%, #0D6EFD 168.68%);
+
+}
+
+.faqpage .navbar {
+     background-color: transparent;
+    color: #fff;
+}
+
+.faqpage .navbar li a{
+    color: #fff;
+}
+
+
+.faqpage .dropdown .dropdown-toggle{
+    color: #fff;
+}
+
+
+.admin button{
+    color: #fff;
+}
+
+.admin a{
+    color: #000!important;
+}
+
+.faqimage{
+    width: 8rem;
+    position: absolute;
+    top: 0;
+    right: 25%;
+}
+
+.faqpage .navbar .dropdown .dropdown-toggle, .faqpage .navbar .navbar-toggler, .faqpage .navbar .navbar-toggler-icon {
+    color: #fff!important;
+}
+
+@media (max-width: 768px) {
+    .faqpage .navbar .dropdown .dropdown-toggle, .faqpage .navbar .navbar-toggler {
+        color: #333!important;
+    }
+
+    .faqpage .navbar li a{
+        color: #333;
+    }
+    
+
+    .faqpage .navbar .navbar-toggler-icon{
+        color: #fff;
+    }
+}

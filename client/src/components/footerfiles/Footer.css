@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer{
+    background-color: #222531;
+    color: #B1C5FF;
+    /* padding: 20px 50px; */
+   /* margin-top: 100px; this is not needed this info is for doc incase there is error in merging */
+}
+
+
+.footer a{
+    text-decoration: none;
+    color: #B1C5FF;
+    display: block;
+     margin-bottom: 10px;
+    /* padding-right: 20px; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

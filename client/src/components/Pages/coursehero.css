@@ -1,0 +1,195 @@
+.coursehero{
+    background-image: url(./../../assets/Vector\ 4.png);
+    background-size: contain;
+    width: 100%;
+    background-position: center;
+    background-repeat: repeat-x ;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+.coursehero .col-md-6 h2{
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+.coursehero .col-md-6 .info-btn small{
+    border: 1px solid #030568;
+    border-radius: .4rem;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+
+.outerbox{
+    background-color: #000066;
+    width: 65%;
+    margin: auto;
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 10px 10px 3px #0d6efd;
+}
+
+
+.next-cohort{
+    background-color:#dae2ff;
+    box-shadow: 8px 8px 3px #000066;
+}
+
+
+
+.outline .list-group p{
+    font-size: .7rem;
+}
+
+
+.packageButton{
+    flex-wrap: nowrap;
+    width: 75%;
+    margin: auto;
+    border: 2px solid #000066;
+    font-weight: bold;
+}
+
+.myactive{
+    background-color: #000066;
+    color: #fff;
+}
+.activeBtn{
+    border: 2px solid #000066;
+}
+
+.package{
+    background-color: #dae2ff;
+}
+
+.package .tab-heading, .package .tablist p{
+    color: #000066;
+    position: relative;
+    font-weight: 500;
+    word-wrap: break-word;
+    width: 20rem;
+    font-weight: 1.2rem;
+    padding: .5rem;
+    line-height: 1.2rem;
+}
+
+.package .tab-heading{
+    font-weight: 700;
+}
+
+
+.package .tab-heading::before{
+    content: "";
+    display: block;
+    width: 3rem;
+    background-color: #000066;
+    height: .1rem;
+    position: absolute;
+    bottom: 0;
+       
+}
+
+.package .tab-heading:hover{
+    transition:  all 3s ease-in-out;
+    transform: scale(1.09);
+       
+}
+
+.packageInfo .stud1{
+    width: 14rem;
+    height: 14rem;
+    object-fit: cover;
+    padding: 1rem;
+    box-shadow: 10px 0px 2px #000066;
+}
+.packageInfo .stud1:hover{
+   transition: all 3s ease-in-out;
+   transform: scale(1.09);
+}
+
+.packageInfo .tablist p::before{
+    content: "";
+    display: block;
+    width: .6rem;
+    background-color: #0d6efd;
+    height: .6rem;
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    box-shadow: 3px 3px 2px #000066;
+}
+
+
+
+
+
+@media(max-width: 768px){
+    .coursehero{
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .next-cohort{
+        width: 90%;
+        margin: auto;
+    }
+    .next-cohort .divider, .next-cohort .col-md-2 svg{
+        transform: rotate(90deg);
+        display: inline!important;
+    }
+
+    
+
+    .notifyboard ul, .packageButton{
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+    .packageButton{
+       width: 90%;
+       margin: auto;
+    }
+
+    .notifyboard ul li{
+       margin: 0 .3rem;
+    }
+
+    .notifyboard ul::-webkit-scrollbar, .packageButton::-webkit-scrollbar{
+       display: none;
+    }
+
+    .packageButton .d-flex{
+        width: 100vw!important;
+    }
+    
+
+    .packageButton::-webkit-scrollbar{
+        display: none;
+    }
+
+   
+  
+
+    
+
+    .outerbox{
+        width: 80%;
+       
+    }
+
+  
+    
+}
+
+@media (max-width: 400px) {
+    .col-md-6 .info-btn small{
+        width: 35%;
+    }
+    
+}
+

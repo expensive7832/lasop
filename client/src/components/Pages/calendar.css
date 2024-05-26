@@ -1,0 +1,101 @@
+.calendarhero{
+    background-image: url(./../../assets/Vector\ 4.png);
+    background-size: contain;
+    width: 100%;
+    background-position: center;
+    background-repeat: repeat-x ;
+    
+}
+
+
+.calendarhero .col-md-6 .info-btn small{
+    border: 1px solid #030568;
+    border-radius: .4rem;
+    width: 20%;
+    font-size: 10px;
+    font-weight: 700;
+    color: #030568;
+}
+
+.calendarhero .col-md-6 h2{
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+.calendar-tabs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .4rem;
+    border: 2px solid #030568;
+    border-radius: 5px;
+    width: fit-content;
+
+}
+
+.calendar-tabs button{
+    color: #030568;
+    padding: 10px;
+    border: 1px solid #030568;
+    border-radius: 3px;
+    font-weight: 600;
+    margin: 0 .4rem;
+}
+
+.calendar-tabs .active{
+    background-color: #030568;
+    color: #fff;
+}
+
+.calendar-table tr{
+    border-color: #030568!important;
+    
+}
+
+.calendar-table th{
+    color: #030568;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+.calendar-table td{
+    color: #030568;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.calendar-table tbody tr:hover{
+    /* background-color: #030568; */
+    font-weight: 800;
+}
+
+
+.calendar-table tbody button{
+    background: linear-gradient(104.24deg, #000066 22.75%, #0D6EFD 168.68%);
+border-radius: 8px;
+color: #fff;
+margin-bottom: .5rem;
+}
+
+
+.calendar-table tbody tr:hover button{
+    background-color: #fff!important;
+
+}
+
+
+@media (max-width: 768px) {
+    .calendarhero{
+    
+        background-size: cover;
+     }
+
+     .calendar-tabs{
+        width: 100%;
+        overflow: scroll;
+     }
+
+     .calendar-tabs::-webkit-scrollbar{
+        display: none;
+     }
+     
+}

@@ -1,0 +1,27 @@
+.syllabus .row .col-md-3, .chrtSyllab .row .col-md-3{
+    width: 23%;
+    margin: .5rem;
+    padding: .5rem 1rem;
+}
+
+.syllabus small{
+    margin: .3rem 0;
+}
+
+.syllabus a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+.chrtSyllab .icon{
+    outline: 1px solid #0D6EFD;
+    padding: 0 .3rem;
+    border-radius: .3rem;
+}
+
+@media (max-width: 576px) {
+    .syllabus .row .col-md-3, .chrtSyllab .row .col-md-3{
+        width: 45%; 
+    }
+}

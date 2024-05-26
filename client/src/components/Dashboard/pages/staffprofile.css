@@ -1,0 +1,29 @@
+
+
+.info-body img{
+    width: 15rem;
+    height: 10rem;
+    object-fit: contain;
+    border-radius: 1.6rem;
+}
+
+.topinfo small::before{
+content: url(./../../../assets/profilebefore.svg);
+
+}
+.topinfo small::after, .bottominfo small::after{
+content: url(./../../../assets/Line\ 12.svg);
+width: 2rem;
+
+}
+
+.topinfo small, .bottominfo small{
+    display: flex;
+    align-items: center;
+    
+}
+
+.bottominfo small::before{
+    content: url(./../../../assets/calendar.png);
+    
+}

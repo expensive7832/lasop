@@ -1,0 +1,53 @@
+.amount{
+    border: 1px solid #0000a1;
+}
+
+.amount h6{
+    color: #000066;
+    font-size: 2rem;
+}
+
+.amount_active{
+    border: 1px solid #a20000!important;
+}
+.amount_active_text{
+    color:  #a20000!important;
+}
+
+.recent-activity .card-body .first{
+    background-color: #DADBFE;
+    margin: .6rem 0;
+    padding: .3rem;
+    border-radius: .3rem;
+}
+.recent-activity .card-body .ind{
+display: flex;
+justify-content: space-between;
+}
+.recent-activity .card-body .ind small::before{
+content: ""!important;
+}
+.recent-activity img{
+    width: 1.3rem;
+    object-fit: contain;
+}
+.recent-activities  p{
+    font-size: .8rem;
+    font-weight: bold;
+}
+.recent-activities .card-body small{
+    font-size: .8rem;
+}
+
+.recent-activity small:first-child::before{
+    content: url(./../../../assets/bookmark-2.png);
+    margin: .1rem .3rem;
+}
+.recent-activity small:last-child::before{
+    content: url(./../../../assets/calendar.png);
+    margin: .1rem .3rem;
+}
+
+@media (max-width:576px) {
+    
+}

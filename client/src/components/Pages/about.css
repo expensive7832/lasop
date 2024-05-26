@@ -1,0 +1,121 @@
+.about .background{
+    background-image: url(./../../assets/Vector\ 4.png);
+    background-size: cover;
+    width: 100%;
+    background-position: center;
+    background-repeat: repeat-x ;
+}
+
+.about .col-md-5 img{
+    width: fit-content;
+}
+
+
+
+.about .col-md-5 img:nth-child(1){
+    box-shadow: 5px 5px 2px #000066;
+    padding: .2rem;
+}
+.about .col-md-5 img:nth-child(2){
+    box-shadow: 5px 5px 2px #0d6efd;
+    padding: .2rem;
+}
+.about .col-md-5 img:nth-child(3){
+    box-shadow: 5px 5px 2px rgb(237, 192, 13);
+    padding: .2rem;
+}
+.about .col-md-5 img:last-child{
+    position: absolute;
+    bottom: 2%;
+    right: -15%;
+    transform: translate(-15%, -2%);
+}
+
+.about .col-md-6:nth-child(2) img:nth-child(1){
+    box-shadow: 5px 5px 2px #000066;
+    padding: .2rem;
+}
+.about .col-md-6:nth-child(2) img:nth-child(2){
+    box-shadow: 5px 5px 2px #0d6efd;
+    padding: .2rem;
+}
+.about .col-md-6:nth-child(2) img:nth-child(3){
+    box-shadow: 5px 5px 2px rgb(237, 192, 13);
+    padding: .2rem;
+}
+.about .col-md-6:nth-child(2) img:last-child{
+    position: absolute;
+    bottom: 2%;
+    right: -15%;
+    transform: translate(-15%, -2%);
+}
+
+.team{
+    background-color: #EEF0FF;
+}
+
+.team .info img{
+    height: 13rem;
+    width: 13rem;
+    border-radius: 50%;
+    border: 2px solid #000066;
+}
+
+.team .info .name{
+    color: #000066;
+    font-weight: bold;
+}
+
+.team .info .title{
+    color: #000066;
+    font-weight: 500;
+}
+
+
+.about .event{
+    background-color: #F1EFFF;
+}
+
+.about .event .doubleline{
+display: block;
+margin: -7rem auto;
+
+transform: rotate(90deg);
+}
+
+
+.about .viewall{
+    width: fit-content;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 2rem;
+    box-shadow: 0 5px 3px #333;
+}
+
+.about .viewall p, .about .viewall svg{
+    color: #000066;
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+
+   
+    .about .col-md-5 img:last-child{
+        
+        right: 0%;
+        transform: translate(0%, -2%);
+    }
+    .about .col-md-2 img{
+        
+        
+        transform: rotate(90deg);
+    }
+    
+    
+    .about .background{
+        background-size: cover;
+        background-repeat: no-repeat;
+        
+    }
+}

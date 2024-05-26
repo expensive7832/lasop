@@ -1,0 +1,26 @@
+.sidebar{
+    position: fixed;
+    top: 50%;
+    z-index: 1000;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+
+@media (max-width: 768px) {
+    /* .sidebar{
+       display: flex;
+       align-items: center;
+       bottom: 1rem;
+       justify-content: center;
+    } */
+
+    .sidebar{
+            display: flex;
+            align-items: end;
+            bottom: 1rem;
+        
+            flex-direction: column;
+        left: 0;
+    }
+}

@@ -1,0 +1,93 @@
+.login .heading{
+    color: #000066;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.login .col-12:first-child p:first-child{
+    top: -2rem;
+}
+
+.login .loginform{
+    border-radius: .5rem;
+    box-shadow: 1px 2px 3px #999;
+}
+
+.loginform input{
+    width: 100%;
+    border: 1px solid #999;
+    padding: .6rem;
+    border-radius: .5rem;
+    background-color: #fff!important;
+}
+
+.loginform .agree, .loginform .payment input{
+    width: 5%;
+    padding: .1rem;
+    background-color: #fff!important;
+    border: 2px solid #000066;
+}
+
+.login .classroom{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+   
+}
+
+.login .row>* {
+    
+    padding-right: 0;
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+
+
+.loginform input:focus{
+    outline: 0!important;
+
+}
+
+
+
+
+@media (max-width: 768px) {
+   .login .loginform{
+        box-shadow: 0 0 0 #fff;
+    }
+
+    .login .col-12:first-child p:first-child{
+        top:1rem;
+    }
+}
+
+.signupbtn {
+    border: 0!important;
+    outline: 0!important;
+   
+}
+
+
+.tandc{
+   border-radius: 1rem;
+    width: 70%;
+    margin: auto;
+    height: 90vh;
+    overflow: auto;
+    overflow: auto;
+   
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .tandc{
+        width: 100%;
+    }
+}
+
+

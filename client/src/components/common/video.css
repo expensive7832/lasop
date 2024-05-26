@@ -1,0 +1,23 @@
+.video{
+    background-image: url(./../../assets/videoleft.png), url(./../../assets//videoright.png), url(./../../assets/videobg.png);
+    background-repeat: no-repeat;
+   background-position:  left top,  right bottom, center;
+   background-size: 7%, 20%, cover;
+    width: 100vw;
+    height: 60vh;
+}
+
+.video video{
+    background-color: #000066;
+    object-fit: contain;
+    height: 40vh;
+    border-radius: 1rem;
+}
+
+
+@media (max-width: 768px) {
+    .video video{
+        width: 90%;
+    }
+
+}

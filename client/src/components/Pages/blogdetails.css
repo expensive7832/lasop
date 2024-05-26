@@ -1,0 +1,31 @@
+.blogdetails .breadcrumb-item+.breadcrumb-item::before{
+    content: ">";
+    font-weight: bold;
+    color: #6e6eb4;
+}
+
+.blogdetails .date::before{
+    content: url(./../../assets/calendar-search.png);
+   
+}
+.blogdetails .time::before{
+    content: url(./../../assets/book.svg);
+}
+
+.blogdetails .similar .header{
+    color: #000066;
+}
+
+
+.blogdetails .viewall{
+    width: fit-content;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 2rem;
+    box-shadow: 0 5px 3px #333;
+}
+
+.blogdetails .viewall p, .blogdetails .viewall svg{
+    color: #000066;
+    font-weight: bold;
+}

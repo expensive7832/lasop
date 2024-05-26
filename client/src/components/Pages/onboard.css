@@ -1,0 +1,8 @@
+.stepActive{
+    background-color: #000066!important;
+}
+
+#RFS-StepperContainer button{
+    background-color: #dae2ff;
+    color: #000;
+}

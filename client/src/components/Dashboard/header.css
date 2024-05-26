@@ -1,0 +1,67 @@
+.dashboard{
+    background-color: #fff!important;
+    border-bottom: 2px solid blue;
+}
+.navbar .nav-link{
+    color: #000!important;
+}
+
+.navbar .dropdown .btn-secondary {
+    color: #fff!important; 
+    background-color: inherit!important;
+    border: none!important; 
+}
+.navbar .dropdown .btn-secondary .start-50 {
+   top: .2rem;
+}
+
+.dashboard .border{
+    background-color: #fefbff;
+}
+.dashboard .border input{
+    border: none;
+    background-color: inherit;
+}
+.dashboard .border input::placeholder{
+    background-color: inherit;
+}
+.dashboard .border input:focus{
+    outline: none;
+}
+
+.notification-num{
+    color: #fff;
+    font-size: .6rem;
+    font-weight: bold;
+    background-color: blue;
+    padding: .6rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius:50%;
+    position: absolute;
+    top: 0;
+    margin-left: .2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notf button{
+    border: 0;
+    border-radius: .6rem;
+    padding: .4rem;
+    font-size: 1rem;
+}
+
+.notf button:first-child{
+    background-color: #000066;
+    
+    color: #fff;
+    
+}
+.notf button:last-child{
+    background-color: #fff;
+    color: #000066;
+    outline: 1px solid #000066;
+    
+}

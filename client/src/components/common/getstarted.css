@@ -1,0 +1,46 @@
+.getstarted .col-md-2 img{
+    transform: rotate(180deg);
+}
+
+.getstarted{
+    background-color: #e0e0ff;
+}
+
+
+
+.getstarted .col-md-5 h5{
+    color: #000066;
+    font-size: 2rem;
+}
+
+.getstarted .col-md-5 p{
+    color: #000066;
+    font-size: .9rem;
+    position: relative;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.getstarted .col-md-5 p::before{
+    content: "";
+    display: block;
+    width: .6rem;
+    background-color: #0d6efd;
+    height: .6rem;
+    position: absolute;
+    left: -5%;
+    top: 50%;
+    transform: translate(5%, -50%);
+    box-shadow: 3px 3px 2px #000066;
+}
+
+
+@media (max-width: 576px) {
+
+    .getstarted .col-md-2 img{
+        transform: rotate(90deg);
+        margin-left: 2rem ;
+    }
+    
+    
+}

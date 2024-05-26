@@ -1,0 +1,22 @@
+.courses .doubleline{
+    transform: rotate(90deg);
+    margin: -7rem auto 0;
+}
+
+.courses .cards img{
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+}
+
+.cards .card{
+    height: 20rem;
+    box-shadow: 3px 0 2px #73ABFE;
+}
+
+@media (max-width: 768px) {
+    .cards .card{
+        height: 21rem;
+    } 
+    
+}

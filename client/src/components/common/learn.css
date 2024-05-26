@@ -1,0 +1,13 @@
+
+.learn{
+    background-color: #0D6EFD;
+   
+}
+
+
+
+.learn .designImg{
+   width: 5rem;
+   height: 5rem;
+   object-fit: contain;     
+}
