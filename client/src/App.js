@@ -10,6 +10,7 @@ import axios from 'axios';
 import { ToastContainer} from 'react-toastify';
 import { useSelector } from 'react-redux';
 import AdminRegister from './components/SignupFIles/AdminRegister';
+import StaffRegister from './components/SignupFIles/StaffRegister';
 
 
 const Home = lazy(() => import("./components/Pages/Home"))
@@ -81,6 +82,7 @@ function App() {
           <Route path="/login" element={ <Login/> }/>
           <Route path="/signup" element={ <Onboard/> }/>
           <Route path="/adminregister" element={ <AdminRegister/> }/>
+          <Route path="/staff" element={<StaffRegister />} />
           <Route path="/forgetpassword" element={ <ForgetPassword/> }/>
           <Route path="/hire" element={ <Hire/> }/>
           <Route path="/courses" element={ <Courses/> }/>

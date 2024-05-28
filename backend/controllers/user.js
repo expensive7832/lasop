@@ -66,6 +66,64 @@ const adminRegister = async (req, res) => {
   }
 };
 
+const staffRegister = async (req, res) => {
+  try {
+    let form = new formidable.IncomingForm();
+    form.parse(req, async (err, fields) => {
+      const { fname, lname, email, password, passcode } = fields;
+
+      if (
+        fname === "" ||
+        lname === "" ||
+        email === "" ||
+        password === "" ||
+        passcode === ""
+      ) {
+        res.status(400).json({ message: "Input Field Cannot Be Empty" });
+      } else {
+        let sql = "SELECT * from users WHERE email = ?";
+
+        await db.query(sql, [email], async (err, result) => {
+          if (result?.length > 0) {
+            res.status(400).json({ message: "Email Already Exists" });
+            
+          }else if (passcode !== "@mama051093") {
+            res.status(400).json({ message: "unathorized" });
+          }
+          
+           else {
+            if (!/[\w]{3,}@[\w]{3,}.[a-z]{2,}/.test(email)) {
+              res.status(400).json({ message: "enter valid email" });
+            } else {
+              let sql = `INSERT INTO users(fname,lname, email, password, active, role) VALUES(?,?,?,?,?,?)`;
+
+              let salt = bcrypt.genSaltSync(10);
+
+              let hashpwd = bcrypt.hashSync(password, salt);
+
+              await db.query(
+                sql,
+                [fname, lname, email, hashpwd, 1, "staff"],
+                async (err, result) => {
+                  if (err) {
+                    await res
+                      .status(400)
+                      .json({ message: err.sqlMessage, info: err.message });
+                  } else {
+                    res.status(201).json({ message: "success" });
+                  }
+                }
+              );
+            }
+          }
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 const signup = async (req, res) => {
   try {
     let form = new formidable.IncomingForm();
@@ -359,5 +417,6 @@ module.exports = {
   getProspectus,
   forgetpassword,
   changepassword,
-  adminRegister
+  adminRegister,
+  staffRegister
 };

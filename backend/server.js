@@ -1,6 +1,6 @@
 const express = require("express")
 const dotenv = require("dotenv")
-const cors = require("cors") 
+const cors = require("cors")
 const db = require("./db.js")
 const userRoute = require("./routes/user.js")
 const activitiesRoute = require("./routes/activities.js")
@@ -11,7 +11,7 @@ const syllabusRoute = require("./routes/syllabus.js")
 const overviewRoute = require("./routes/overview.js")
 const formidable = require("formidable")
 const crypto = require('crypto')
-const {PaymentMail } = require("./utils/mail.js")
+const { PaymentMail } = require("./utils/mail.js")
 const morgan = require("morgan")
 
 dotenv.config()
@@ -28,12 +28,12 @@ dotenv.config()
 
 const app = express()
 app.use(cors({
-  origin:"*"
+  origin: "*"
 }))
 
 app.use(express.json())
 app.use(morgan("tiny"))
-app.use(express.urlencoded({ extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 
 app.use(userRoute)
@@ -46,64 +46,64 @@ app.use(overviewRoute)
 
 
 
-app.get("/test", async(req, res) =>{
+app.get("/test", async (req, res) => {
   res.send("api working")
 })
 
-app.post("/payment", async(req, res) =>{
+app.post("/payment", async (req, res) => {
   const eventData = req.body;
   const signature = req.headers['x-paystack-signature'];
 
   if (!verify(eventData, signature)) {
-    return res.status(400).json({info: 'Invalid signature'});
+    return res.status(400).json({ info: 'Invalid signature' });
   }
 
   const transactionId = eventData.data.id;
-   let userId = parseInt(eventData?.data?.metadata?.id)
-   let ref = eventData?.data?.reference
-   let date = new Date(eventData?.data?.paid_at)
-   let sts = eventData?.data?.status
-   let amt = eventData?.data?.amount
-   let evt = eventData?.event
-   let email = eventData?.data?.customer?.email
-   let name = eventData?.data?.metadata?.fname
+  let userId = parseInt(eventData?.data?.metadata?.id)
+  let ref = eventData?.data?.reference
+  let date = new Date(eventData?.data?.paid_at)
+  let sts = eventData?.data?.status
+  let amt = eventData?.data?.amount
+  let evt = eventData?.event
+  let email = eventData?.data?.customer?.email
+  let name = eventData?.data?.metadata?.fname
 
   if (evt === 'charge.success') {
-    
+
 
 
     //Process the successful transaction to maybe fund wallet and update your WalletModel
-   let sql = "INSERT INTO payment(refId, paymentTime, user, status, amount, event, transactionid) values(?,?,?,?,?,?,?)"
-   db.query(sql, [ref, date,userId, sts, amt, evt, transactionId], (err, result) =>{
-    if(err){
-      console.error(err)
-      res.status(400)
-    }else{
-      PaymentMail(email,name, amt)
-      console.log(eventData)
-      res.status(200)
-    }
-   })
+    let sql = "INSERT INTO payment(refId, paymentTime, user, status, amount, event, transactionid) values(?,?,?,?,?,?,?)"
+    db.query(sql, [ref, date, userId, sts, amt, evt, transactionId], (err, result) => {
+      if (err) {
+        console.error(err)
+        res.status(400)
+      } else {
+        PaymentMail(email, name, amt)
+        console.log(eventData)
+        res.status(200)
+      }
+    })
   }
 
-  
- 
+
+
 
 })
 
 
 
 
-app.listen(process.env.REACT_APP_PORT || 5000, () =>{
-  
-    try{
-        db.connect()
-    
-        console.log("db connecton established")
-        console.log(`listening on port ${process.env.PORT}`)
-      }catch(e){
-        console.error(e)
-      }
-    
+app.listen(process.env.REACT_APP_PORT || 5000, () => {
+
+  try {
+    db.connect()
+
+    console.log("db connecton established")
+    console.log(`listening on port ${process.env.PORT}`)
+  } catch (e) {
+    console.error(e)
+  }
+
 })
 
