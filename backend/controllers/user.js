@@ -66,7 +66,7 @@ const adminRegister = async (req, res) => {
   }
 };
 
-const staffRegister = async (req, res) => {
+function staffRegister(req, res) {
   try {
     let form = new formidable.IncomingForm();
     form.parse(req, async (err, fields) => {
@@ -304,13 +304,13 @@ const getUser = async (req, res) => {
     } else {
       // let sql = "select users.id, users.fname, users.phone as phone, users.paymentstatus as status, users.dateCreated, course.title as coursetitle, course.duration as duration,  calendar.cohort as chrttitle, calendar.center as centertitle, calendar.mode as mostitle users.edustatus as learningprocess from users inner join course on course.id = users.course inner join calendar on calendar.id = users.mode  where users.id = ?";
       let sql =
-        "select users.id, users.fname, users.lname, users.loc as address, users.imgurl, users.phone as phone, users.paymentstatus as status, users.datecreated , cohort.title as chrttitle, calendar.end as duedate, calendar.start as startdate, calendar.mode as mos, calendar.center as center, course.title, course.duration, course.price from users inner join calendar on calendar.id = users.mode inner join course on course.id = users.course inner join cohort on cohort.id = calendar.session where users.id = ?";
+        "select users.id, users.role, users.fname, users.lname, users.loc as address, users.imgurl, users.phone as phone, users.paymentstatus as status, users.datecreated , cohort.title as chrttitle, calendar.end as duedate, calendar.start as startdate, calendar.mode as mos, calendar.center as center, course.title, course.duration, course.price from users inner join calendar on calendar.id = users.mode inner join course on course.id = users.course inner join cohort on cohort.id = calendar.session where users.id = ?";
       await db.query(sql, [id], async (err, rows) => {
         if (err) {
           // return res.status(400).json({message: err.message});
           console.log(err.sqlMessage);
         } else {
-          console.log(rows[0]);
+          
           return res.status(200).send(rows[0]);
         }
       });
@@ -409,7 +409,71 @@ const getProspectus = async (req, res) => {
   });
 };
 
+
+const getAllUsers = async (req, res) => {
+  try {
+    
+
+    const { user } = req;
+
+    if (user == null) {
+      return res.status(400).json({ message: "invalid credentials" });
+    } else {
+      // let sql = "select users.id, users.fname, users.phone as phone, users.paymentstatus as status, users.dateCreated, course.title as coursetitle, course.duration as duration,  calendar.cohort as chrttitle, calendar.center as centertitle, calendar.mode as mostitle users.edustatus as learningprocess from users inner join course on course.id = users.course inner join calendar on calendar.id = users.mode  where users.id = ?";
+      let sql =
+        "select users.id, users.role, users.fname, users.lname, users.loc as address, users.imgurl, users.phone as phone, users.paymentstatus as status, users.datecreated , cohort.title as chrttitle, calendar.end as duedate, calendar.start as startdate, calendar.mode as mos, calendar.center as center, course.title, course.duration, course.price from users inner join calendar on calendar.id = users.mode inner join course on course.id = users.course inner join cohort on cohort.id = calendar.session order by datecreated desc";
+      await db.query(sql, async (err, rows) => {
+        if (err) {
+          // return res.status(400).json({message: err.message});
+          console.log(err.sqlMessage);
+        } else {
+        
+          res.status(200).send(rows);
+        }
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const searchUser = async(req, res) =>{
+  const {q} = req.query
+
+  
+  if(q === ""){
+    res.status(400).json({message:"field cannot be empty"})
+  }else{
+    let sql = "SELECT * FROM users where fname like ? or lname like ? or email like ? or phone like ?"
+    let value = `%${q}%`
+    await db.query(sql, [value, value, value, value], (err, rows) =>{
+      if(err){
+        console.g(err);
+      }else{
+       
+        res.status(200).send(rows);
+      }
+    })
+  }
+}  
+
+
+const updateRole = async(req, res) =>{
+  const { role, id} = req.body
+
+  let sql = "UPDATE users set role = ? where id = ?"
+
+  await db.query(sql, [role, id], (err, rows) =>{
+    if(err){
+      console.log(err);
+    }else{
+      res.status(200).json({message:"success"})
+    }
+  })
+}
+
 module.exports = {
+  updateRole,
   getUser,
   signup,
   login,
@@ -418,5 +482,7 @@ module.exports = {
   forgetpassword,
   changepassword,
   adminRegister,
-  staffRegister
+  staffRegister,
+  getAllUsers,
+  searchUser
 };

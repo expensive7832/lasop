@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TopForm from './TopForm'
 import { FaEye, FaGreaterThan, FaLessThan } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -7,6 +7,12 @@ function Staffs() {
 
     const [activeTab, setActiveTab] = useState(0)
     const [pagination, setPagination] = useState(1)
+
+    useEffect(() =>{
+
+        
+
+    }, [])
 
     const data = [
         { id: 1, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },

@@ -18,6 +18,8 @@ import Cohortsyllabus from "./pages/Cohortsyllabus";
 import Exams from "./pages/Exams";
 import ExamByDpt from "./pages/ExamByDpt";
 import Calendar from "./pages/Calendar";
+import User from "./pages/User"
+import UpdateUser from "./pages/Updateuser"
 import Blog from "./pages/Blog";
 import Receipt from "./pages/Receipt";
 import { useSelector } from "react-redux";
@@ -58,7 +60,15 @@ const Layout = () => {
       const uid = new URLSearchParams(window.location.search).get("id")
       
       return uid === null ? <Students/>: <StudentProfile id={uid} />
-    }else if(text === "staffs"){
+    
+    }else if(text === "user"){
+
+    const uid = new URLSearchParams(window.location.search).get("id")
+    
+    return uid === null ? <User/>: <UpdateUser id={uid} />
+  
+  }
+    else if(text === "staffs"){
       const uid = new URLSearchParams(window.location.search).get("id")
       return uid === null ? <Staffs/>: <StaffProfile id={uid} />
       

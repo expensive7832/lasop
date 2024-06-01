@@ -24,6 +24,12 @@ const navigation = [
     admin: true,
   },
   {
+    title: "Users",
+    href: "/dashboard/user",
+    icon: app,
+    admin: true
+  },
+  {
     title: "Calendar",
     href: "/dashboard/calendar",
     icon: Calendar,
@@ -35,6 +41,7 @@ const navigation = [
     icon: Calendar,
     admin: true
   },
+  
   {
     title: "Applicants",
     href: "/dashboard/applicants/",

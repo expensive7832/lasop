@@ -1,0 +1,22 @@
+.search{
+    width: 70%;
+    margin: 1rem auto 3rem;
+}
+
+.filter{
+    border: none;
+    padding: 3px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.filter:active, .filter:focus{
+    outline: none;  
+    border: none;
+}
+
+@media (max-width: 576px) {
+    .search{
+        width: 90%;
+    }
+}
