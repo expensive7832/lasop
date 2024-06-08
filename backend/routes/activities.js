@@ -1,9 +1,10 @@
 const express = require('express')
-const {Test, getMos, getCenter, getCohort, getCourse, Receipt, getReceipt, confirmReceipt, getApplicants, getlearningstatus, getStudentByLearningModeStatus , getAllCourse } = require('../controllers/activities.js')
+const {Test, getMos, getCenter, getCohort, getCourse, Receipt, getReceipt, confirmReceipt, getApplicants, getlearningstatus, getStudentByLearningModeStatus , getAllCourse, getLearningStatus } = require('../controllers/activities.js')
 const Protect = require('../middleware/protect.js')
 const router = express.Router();
 
 router.get("/getmos", getMos)
+router.get("/getlearningstatus", getLearningStatus)
 router.get("/getcenter", getCenter)
 router.get("/getcohort", getCohort)
 router.get("/getcourse", getCourse)

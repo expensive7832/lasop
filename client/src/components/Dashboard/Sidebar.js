@@ -42,12 +42,12 @@ const navigation = [
     admin: true
   },
   
-  {
-    title: "Applicants",
-    href: "/dashboard/applicants/",
-    icon: app,
-    admin: true
-  },
+  // {
+  //   title: "Applicants",
+  //   href: "/dashboard/applicants/",
+  //   icon: app,
+  //   admin: true
+  // },
   {
     title: "Receipt",
     href: "/dashboard/receipt/",

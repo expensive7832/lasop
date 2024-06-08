@@ -9,6 +9,7 @@ const calendarRoute = require("./routes/calendar.js")
 const cohortRoute = require("./routes/cohort.js")
 const syllabusRoute = require("./routes/syllabus.js")
 const overviewRoute = require("./routes/overview.js")
+const staffRoute = require("./routes/staff.js")
 const formidable = require("formidable")
 const crypto = require('crypto')
 const { PaymentMail } = require("./utils/mail.js")
@@ -43,6 +44,7 @@ app.use(calendarRoute)
 app.use(cohortRoute)
 app.use(syllabusRoute)
 app.use(overviewRoute)
+app.use(staffRoute)
 
 
 

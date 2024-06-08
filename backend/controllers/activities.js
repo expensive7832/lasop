@@ -23,6 +23,24 @@ const getMos = async (req, res) => {
     }
 }
 
+const getLearningStatus = async (req, res) => {
+
+    try {
+        const sql = "SELECT * FROM  learningstatus ";
+
+        await db.query(sql, (error, results, fields) => {
+            if (error) {
+                res.status(400).json({ message: error.message });
+            } else {
+                res.send(results);
+            }
+
+        })
+    } catch (e) {
+        res.send(e)
+    }
+}
+
 const getCohort = async (req, res) => {
 
     try {
@@ -250,4 +268,4 @@ const getStudentByLearningModeStatus = async (req, res) => {
 
 
 
-module.exports = { getlearningstatus, getAllCourse, getStudentByLearningModeStatus, getMos, getCenter, getApplicants, getCohort, getCourse, Receipt, getReceipt, confirmReceipt }
+module.exports = { getlearningstatus, getAllCourse, getStudentByLearningModeStatus, getLearningStatus,  getMos, getCenter, getApplicants, getCohort, getCourse, Receipt, getReceipt, confirmReceipt }

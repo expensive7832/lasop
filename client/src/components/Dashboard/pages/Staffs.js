@@ -1,37 +1,57 @@
 import React, { useEffect, useState } from 'react'
 import TopForm from './TopForm'
 import { FaEye, FaGreaterThan, FaLessThan } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 function Staffs() {
 
     const [activeTab, setActiveTab] = useState(0)
     const [pagination, setPagination] = useState(1)
 
+    const [datas, setDatas] = useState(null)
+
+    const token = useSelector((state) => state?.user?.token)
+
+    const navigate = useNavigate()
+
     useEffect(() =>{
 
-        
+        axios
+        .get(`${process.env.REACT_APP_API_URL}/allusers`,{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        })
+        .then((res) => setDatas(res?.data?.filter((each) => each?.role == "staff")))
+        .catch((err) => {
+          
+          for(let each in err.response.data){
+            if(err.response.data[each] === "invalid credentials"){
+              
+              toast.error(err.response.data[each])
+  
+              navigate("/login")
+  
+             }
+             else{
+              toast.error(err.response.data[each])
+            }
+          }
+        });
 
     }, [])
 
-    const data = [
-        { id: 1, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },
-        { id: 2, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },
-        { id: 3, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },
-        { id: 4, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },
-        { id: 5, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },
-        { id: 6, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },
-        { id: 7, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },
-        { id: 8, name: "Nathan", email: "a@b.com", phone: "08166398746", stack: "frontend", started:"Mar 13, 2023" },
-    ]
-
+  
     const tabs = ["Academic", "Non-Academic"]
 
 
   return (  
     <div className="students">
         <TopForm title="Staffs"/>
-        <ul className="nav my-2">
+        <ul className="nav my-2" style={{cursor:"pointer"}}>
         {tabs?.map((tab,i) =>(
            <li key={i} onClick={() => setActiveTab(i)} className={`h6 nav-item mx-2 ${activeTab === i && "border-bottom border-primary border-5"}`}>{tab}</li> 
         ))}
@@ -42,7 +62,8 @@ function Staffs() {
                     <thead className='' style={{ backgroundColor: "#9EA9BD" }}>
                         <tr>
                             <th scope="col">S/N</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone No</th>
                             <th scope="col">Stack</th>
@@ -52,14 +73,15 @@ function Staffs() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data?.map((d, i) => (
+                        {datas?.map((d, i) => (
                             <tr key={d?.id}>
                                 <td scope="row">{d?.id}</td>
-                                <td>{d?.name}</td>
+                                <td>{d?.fname}</td>
+                                <td>{d?.lname}</td>
                                 <td>{d?.email}</td>
                                 <td>{d?.phone}</td>
                                 <td>{d?.stack}</td>
-                                <td>{d?.started}</td>
+                                <td>{new Date(d?.datecreated).toDateString()}</td>
                         
                                <Link className='nav-link' to={`/dashboard/staffs?id=${d?.id}`}>
                                <div className='rounded  mb-1 d-flex border align-items-center justify-content-around border-primary'>

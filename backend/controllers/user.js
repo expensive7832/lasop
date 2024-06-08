@@ -124,7 +124,7 @@ function staffRegister(req, res) {
   }
 };
 
-const signup = async (req, res) => {
+function signup(req, res){
   try {
     let form = new formidable.IncomingForm();
     form.parse(req, async (err, fields, file) => {
@@ -140,7 +140,7 @@ const signup = async (req, res) => {
         mos === "" ||
         phone === "" ||
         course === "" ||
-        phone?.originalFilename == "" ||
+        photo?.originalFilename == "" ||
         fname === undefined ||
         lname === undefined ||
         email === undefined ||
@@ -187,7 +187,7 @@ const signup = async (req, res) => {
                       loc,
                       course,
                       mos,
-                      1,
+                      5,
                       imgurl,
                       imgid,
                     ],
@@ -304,8 +304,8 @@ const getUser = async (req, res) => {
     } else {
       // let sql = "select users.id, users.fname, users.phone as phone, users.paymentstatus as status, users.dateCreated, course.title as coursetitle, course.duration as duration,  calendar.cohort as chrttitle, calendar.center as centertitle, calendar.mode as mostitle users.edustatus as learningprocess from users inner join course on course.id = users.course inner join calendar on calendar.id = users.mode  where users.id = ?";
       let sql =
-        "select users.id, users.role, users.fname, users.lname, users.loc as address, users.imgurl, users.phone as phone, users.paymentstatus as status, users.datecreated , cohort.title as chrttitle, calendar.end as duedate, calendar.start as startdate, calendar.mode as mos, calendar.center as center, course.title, course.duration, course.price from users inner join calendar on calendar.id = users.mode inner join course on course.id = users.course inner join cohort on cohort.id = calendar.session where users.id = ?";
-      await db.query(sql, [id], async (err, rows) => {
+        "select users.id, users.role, users.email, users.fname, users.lname, users.loc as address, users.imgurl, users.phone as phone, users.paymentstatus as status, users.datecreated , cohort.title as chrttitle, calendar.end as duedate, calendar.start as startdate, calendar.mode as mos, calendar.center as center, course.title, course.duration, course.price, learningstatus.title as learningstatus from users inner join calendar on calendar.id = users.mode inner join course on course.id = users.course inner join cohort on cohort.id = calendar.session inner join learningstatus on learningstatus.id = users.edustatus where users.id = ? order by datecreated desc "
+        await db.query(sql, [id], async (err, rows) => {
         if (err) {
           // return res.status(400).json({message: err.message});
           console.log(err.sqlMessage);
@@ -421,7 +421,7 @@ const getAllUsers = async (req, res) => {
     } else {
       // let sql = "select users.id, users.fname, users.phone as phone, users.paymentstatus as status, users.dateCreated, course.title as coursetitle, course.duration as duration,  calendar.cohort as chrttitle, calendar.center as centertitle, calendar.mode as mostitle users.edustatus as learningprocess from users inner join course on course.id = users.course inner join calendar on calendar.id = users.mode  where users.id = ?";
       let sql =
-        "select users.id, users.role, users.fname, users.lname, users.loc as address, users.imgurl, users.phone as phone, users.paymentstatus as status, users.datecreated , cohort.title as chrttitle, calendar.end as duedate, calendar.start as startdate, calendar.mode as mos, calendar.center as center, course.title, course.duration, course.price from users inner join calendar on calendar.id = users.mode inner join course on course.id = users.course inner join cohort on cohort.id = calendar.session order by datecreated desc";
+        "select users.id, users.role, users.email, users.fname, users.lname, users.loc as address, users.imgurl, users.phone as phone, users.paymentstatus as status, users.datecreated , cohort.title as chrttitle, calendar.end as duedate, calendar.start as startdate, calendar.mode as mos, calendar.center as center, course.title, course.duration, course.price, learningstatus.title as learningstatus from users inner join calendar on calendar.id = users.mode inner join course on course.id = users.course inner join cohort on cohort.id = calendar.session inner join learningstatus on learningstatus.id = users.edustatus order by datecreated desc";
       await db.query(sql, async (err, rows) => {
         if (err) {
           // return res.status(400).json({message: err.message});
@@ -444,7 +444,7 @@ const searchUser = async(req, res) =>{
   if(q === ""){
     res.status(400).json({message:"field cannot be empty"})
   }else{
-    let sql = "SELECT * FROM users where fname like ? or lname like ? or email like ? or phone like ?"
+    let sql = "SELECT users.fname,users.lname,users.phone,users.email,users.role,users.loc, users.id,users.datecreated, learningstatus.title as learningstatus FROM users inner join learningstatus on learningstatus.id = users.edustatus where fname like ? or lname like ? or email like ? or phone like ?"
     let value = `%${q}%`
     await db.query(sql, [value, value, value, value], (err, rows) =>{
       if(err){
@@ -458,10 +458,10 @@ const searchUser = async(req, res) =>{
 }  
 
 
-const updateRole = async(req, res) =>{
+const updateStudentMode = async(req, res) =>{
   const { role, id} = req.body
 
-  let sql = "UPDATE users set role = ? where id = ?"
+  let sql = "UPDATE users set edustatus = ? where id = ?"
 
   await db.query(sql, [role, id], (err, rows) =>{
     if(err){
@@ -473,7 +473,7 @@ const updateRole = async(req, res) =>{
 }
 
 module.exports = {
-  updateRole,
+  updateStudentMode,
   getUser,
   signup,
   login,

@@ -40,9 +40,9 @@ function Users() {
             navigate("/login")
 
            }
-          //  else{
-          //   toast.error(err.response.data[each])
-          // }
+           else{
+            toast.error(err.response.data[each])
+          }
         }
       });
   }
@@ -140,11 +140,12 @@ function Users() {
             <th scope="col">Phone</th>
             <th scope="col">Address</th>
             <th scope="col">Role</th>
+            <th scope="col">Student Mode</th>
             <th scope="col">Date</th>
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody className="text-start">
+        <tbody className="">
           {searchDatas?.map((d, i) => (
             <tr key={d?.id}>
               <td scope="row">{d?.id}</td>
@@ -155,8 +156,18 @@ function Users() {
                 </a>
               </td>
 
-              <td >{d?.address}</td>
+              <td >{d?.loc}</td>
               <td>{d?.role}</td>
+              {
+                d?.role === "admin" ||
+                d?.role === "staff" ?
+
+                <td> - </td>
+                :
+
+                <td>{d?.learningstatus}</td>
+              }
+          
             
               <td>{new Date(d?.datecreated).toDateString()}</td>
               <Link
@@ -184,11 +195,12 @@ function Users() {
           <th scope="col">Phone</th>
           <th scope="col">Address</th>
           <th scope="col">Role</th>
+          <th scope="col">Student Mode</th>
           <th scope="col">Date</th>
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody className="text-start">
+      <tbody className="">
         {datas?.map((d, i) => (
           <tr key={d?.id}>
             <td scope="row">{d?.id}</td>
@@ -199,8 +211,17 @@ function Users() {
               </a>
             </td>
 
-            <td >{d?.address}</td>
+            <td className="" >{d?.address}</td>
             <td>{d?.role}</td>
+            {
+                d?.role === "admin" ||
+                d?.role === "staff" ?
+
+                <td> - </td>
+                :
+
+                <td>{d?.learningstatus}</td>
+              }
           
             <td>{new Date(d?.datecreated).toDateString()}</td>
             <Link

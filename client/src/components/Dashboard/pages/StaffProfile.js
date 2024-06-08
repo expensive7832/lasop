@@ -1,13 +1,41 @@
-import React from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { FaUserCircle, FaGripHorizontal } from 'react-icons/fa'
 import "./staffprofile.css"
 import img from "./../../../assets/user1.png"
 import message from "./../../../assets/messages.svg"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { Dropdown, DropdownItem, DropdownMenu , DropdownToggle} from 'reactstrap'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 function StaffProfile({  id }) {
+
+    const navigate = useNavigate()
+
+    const [data, setData] = useState(null)
+
+    const token = useSelector((state) => state?.user?.token)
+  
+   
+
+    useLayoutEffect(() =>{
+        axios.get(`${process.env.REACT_APP_API_URL}/fetchstaff/${id}`, {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((res) => {
+            setData(res.data);
+           
+        })
+        .catch((err) =>{
+            toast.error(err?.response?.data?.mesage)
+            // navigate("/login")
+        })
+    }, [])
+    
     return (
         <div className="profile">
             <div className='border-bottom border-primary border-1 p-1'>
@@ -21,19 +49,23 @@ function StaffProfile({  id }) {
                                 <p className="text-primary d-inline">message</p>
                             </div>
                             <div className="rounded p-1">
-                              <Dropdown >
-                                <DropdownToggle className='bg-white'>
-                                <FaGripHorizontal color='#999'/>
-                                </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem className="">
-                                    <Link className='nav-link'>Confirm Payment</Link>
-                                    </DropdownItem>
-                                    <DropdownItem className="">
-                                    <Link className='nav-link'>Re-admit</Link>
-                                    </DropdownItem>
-                                </DropdownMenu>
-                              </Dropdown>
+                              <div class="dropdown open">
+                                <button
+                                    class="btn btn-secondary dropdown-toggle"
+                                    type="button"
+                                    id="triggerId"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                >
+                                    <FaGripHorizontal color='#999'/>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="triggerId">
+                                    <Link  class="dropdown-item" to="/dashboard/attendance">Attendance</Link>
+                                    
+                                </div>
+                              </div>
+                              
                             </div>
                         </div>
                     </div>
@@ -50,38 +82,38 @@ function StaffProfile({  id }) {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-md-3 col-sm-6 col-12">
-                                <img src={img} alt="profile" />
+                                <img src={data?.imgurl} alt="profile" />
                             </div>
                             <div className="col-md-3 col-sm-6 col-12">
                                 <div>
                                     <label htmlFor="">Name</label>
-                                    <h6>Yusuf Jimoh</h6>
+                                    <h6>{data?.fname } {data?.lname}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Phone Number</label>
-                                    <h6>0987654568</h6>
+                                    <h6>{data?.phone}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Email</label>
-                                    <h6>a@b.com</h6>
+                                    <h6>{data?.phone}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Current Address</label>
-                                    <h6>No, 2 Ajah cresent road</h6>
+                                    <h6>{data?.loc}</h6>
                                 </div>
                             </div>
                             <div className="col-md-3 col-sm-6 col-12">
                                 <div>
                                     <label htmlFor="">Staff ID</label>
-                                    <h6>#LA1234</h6>
+                                    <h6>{data?.staffID}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Job Title</label>
-                                    <h6>Frontend Instructor</h6>
+                                    <h6 className='text-capitalize'>{data?.stack} {data?.role === "academic" && 'instructor'}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Date Of Employment</label>
-                                    <h6>11/11/2022</h6>
+                                    <h6>{new Date(data?.employedDate).toDateString()}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Nationality</label>
@@ -91,7 +123,7 @@ function StaffProfile({  id }) {
                             <div className="col-md-3 col-sm-6 col-12">
                                 <div>
                                     <label htmlFor="">Net Salary</label>
-                                    <h6>1.2M</h6>
+                                    <h6>{(data?.salary * 12)}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Commendation</label>
@@ -116,42 +148,42 @@ function StaffProfile({  id }) {
                     <small className='ms-2'>OTHER INFORMATION</small>
                 </div>
 
-                <div className="info-body py-3">
+               <div className="info-body py-3">
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-md-3 col-sm-6 col-12">
-                                <img src={img} alt="profile" />
+                                <img src={data?.imgurl} alt="profile" />
                             </div>
                             <div className="col-md-3 col-sm-6 col-12">
                                 <div>
                                     <label htmlFor="">Name</label>
-                                    <h6>Yusuf Jimoh</h6>
+                                    <h6>{data?.fname } {data?.lname}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Phone Number</label>
-                                    <h6>0987654568</h6>
+                                    <h6>{data?.phone}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Email</label>
-                                    <h6>a@b.com</h6>
+                                    <h6>{data?.phone}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Current Address</label>
-                                    <h6>No, 2 Ajah cresent road</h6>
+                                    <h6>{data?.loc}</h6>
                                 </div>
                             </div>
                             <div className="col-md-3 col-sm-6 col-12">
                                 <div>
                                     <label htmlFor="">Staff ID</label>
-                                    <h6>#LA1234</h6>
+                                    <h6>{data?.staffID}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Job Title</label>
-                                    <h6>Frontend Instructor</h6>
+                                    <h6 className='text-capitalize'>{data?.stack} {data?.role === "academic" && 'instructor'}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Date Of Employment</label>
-                                    <h6>11/11/2022</h6>
+                                    <h6>{new Date(data?.employedDate).toDateString()}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Nationality</label>
@@ -161,7 +193,7 @@ function StaffProfile({  id }) {
                             <div className="col-md-3 col-sm-6 col-12">
                                 <div>
                                     <label htmlFor="">Net Salary</label>
-                                    <h6>1.2M</h6>
+                                    <h6>{(data?.salary * 12)}</h6>
                                 </div>
                                 <div>
                                     <label htmlFor="">Commendation</label>
