@@ -83,24 +83,21 @@ function Faq() {
         rowContentPaddingLeft: "10px",
         rowContentPaddingRight: "10px",
         transitionDuration: "0.9s",
-        timingFunc: "ease-in-out"
-
+        timingFunc: "ease-in-out",
+        padding: '10px'
     }
 
-  return (
-    <div className="faqs p-5">
-
-
-        <div className="info">
-        <Faquestion
-                styles={style}
-                data={data}
-               config={config}
-            />
+    return (
+        <div className="faqs p-3">
+            <div className="info">
+                <Faquestion
+                    styles={style}
+                    data={data}
+                    config={config}
+                />
+            </div>
         </div>
-
-    </div>
-  )
+    )
 }
 
 export default Faq

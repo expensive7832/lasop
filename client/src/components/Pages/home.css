@@ -42,6 +42,7 @@ transform: rotate(90deg);
 
 
 
+
 .home .viewall{
     width: fit-content;
     margin: auto;
@@ -61,8 +62,7 @@ transform: rotate(90deg);
 
 .home .faq .doubleline{
     display: block;
-  
-    margin: -3rem auto ;
+    margin: -7rem auto -4rem;
     transform: rotate(90deg);
 }
  div[data-aos]{

@@ -7,19 +7,20 @@ function OurProgram() {
 
     const small = useMediaQuery({
         query: '(max-width: 576px)'
-      })
+    })
 
-    
+
 
     return (
         <div className="program">
             <div className="ourprogram">
                 <div className="container ">
-                    <h6 className='p-3 h5 text-center fw-bold'>Our programs are designed to prepare you for a career in the  <br />
-                        world’s fastest growing industries.</h6>
+                    <h6 className='p-3 h5 text-center fw-bold'>
+                        Our programs are designed to prepare you for a career in the  <br />
+                        world’s fastest growing industries.
+                    </h6>
 
-                    <div className="info p-5">
-
+                    <div className="info p-3">
                         <div className="each d-flex position-relative my-3 ">
                             <div className='firstbox z-3 d-none d-lg-block '>
                                 <img src="./../../../images/mrdavid.png" alt="" />
@@ -110,7 +111,7 @@ function OurProgram() {
                         </div>
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>

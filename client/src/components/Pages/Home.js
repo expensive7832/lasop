@@ -258,14 +258,14 @@ useLayoutEffect(() =>{
 
 
         <div data-aos="zoom-in-up" className="cards container p-4">
-          <div className="row gap-md-0 gap-3">
+          <div className="row gap-md-0 gap-4">
             {cardsData?.map((data, i) => (
-              <div key={i} className="col-md-6 col-lg-4 my-2">
+              <div key={i} className="col-md-6 col-lg-4 p-2">
                 <div className="card p-3">
                   <img src={`./../../../images/${data?.img}`} alt={data?.title} className="card-img-top img-fluid" />
                   <h5 className='my-3 text-capitalize '>{data?.title}</h5>
                   <p>{data?.info}</p>
-                  <div className="border w-50 rounded p-2 border-primary d-flex gap-3 align-items-center">
+                  <div className="border w-50 rounded p-2 border-primary d-flex gap-2 align-items-center">
                     <Link to={`/course/${data?.slug}`} className='fw-bold'>learn more</Link>
                     <TbMathGreater color='#000066' />
                   </div>
