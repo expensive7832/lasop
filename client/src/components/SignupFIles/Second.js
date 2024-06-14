@@ -45,7 +45,7 @@ function Second() {
       photo: storedata.photo,
     }
 
-    await axios.post(`${process.env.REACT_APP_API_URL}/register`, registerData, {
+    await axios.post(`https://lasopbackend.net/register`, registerData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -71,19 +71,19 @@ function Second() {
   const [cohort, setCohort] = useState(null);
 
   useLayoutEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/getcourse`)
+    axios.get(`https://lasopbackend.net/getcourse`)
       .then((res) => setCourses(res?.data))
       .catch((err) => console.log(err))
 
-    axios.get(`${process.env.REACT_APP_API_URL}/getmos`)
+    axios.get(`https://lasopbackend.net/getmos`)
       .then((res) => setmos(res?.data))
       .catch((err) => console.log(err))
 
-    axios.get(`${process.env.REACT_APP_API_URL}/getcenter`)
+    axios.get(`https://lasopbackend.net/getcenter`)
       .then((res) => setCenter(res?.data))
       .catch((err) => console.log(err))
 
-    axios.get(`${process.env.REACT_APP_API_URL}/getchort`)
+    axios.get(`https://lasopbackend.net/getchort`)
       .then((res) => setCohort(res?.data))
       .catch((err) => console.log(err))
 
