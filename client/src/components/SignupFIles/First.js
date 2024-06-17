@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./../Pages/login.css"
+import "./../Pages/login/login.css"
 import { AiOutlineEyeInvisible } from "react-icons/ai"
 import { NavLink } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +11,7 @@ import { IoMdClose } from "react-icons/io";
 
 import './terms.css'
 
-import PreviewTandC from '../PreviewTandC'
+import PreviewTandC from '../previewTermsAndCondition/PreviewTandC'
 
 function First() {
   const [showpwd, setShowpwd] = useState(false)

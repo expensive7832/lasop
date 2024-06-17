@@ -109,3 +109,4 @@ app.listen(process.env.REACT_APP_PORT || 5000, () => {
 
 })
 
+// Good morning Mr Douglas, So I've gone through mailchimp response to our reply on the omnivorous, and find out we might be dealing with 2 major problems first problem 'prospecting in nature' and lastly 'permission to send emails to the contact lists', 'Prospecting in nature' in the sense that :: More broadly, prospecting can mean searching or exploring for any valuable resource or opportunity. For example, job seekers might prospect for job openings, or investors might prospect for promising investment opportunities.

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { BsArrowLeftCircle, BsArrowLeftSquare, BsArrowRightCircle, BsArrowRightSquare } from "react-icons/bs";
-import "./../Pages/login.css";
+import "./../Pages/login/login.css";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, Spinner } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,6 +1,4 @@
 import React, { lazy, Suspense, useLayoutEffect, useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { BrowserRouter , Routes, Route,  Navigate } from "react-router-dom";
 import "aos/dist/aos.js"
 import "aos/dist/aos.css"
@@ -13,21 +11,21 @@ import AdminRegister from './components/SignupFIles/AdminRegister';
 import StaffRegister from './components/SignupFIles/StaffRegister';
 
 
-const Home = lazy(() => import("./components/Pages/Home"))
-const Course = lazy(() => import("./components/Pages/Course"))
-const Onboard = lazy(() => import("./components/Pages/Onboard"))
-const Login = lazy(() => import("./components/Pages/Login"))
-const Hire = lazy(() => import("./components/Pages/Hire"))
-const Calendar = lazy(() => import("./components/Pages/Calendar"))
-const Faq = lazy(() => import("./components/Pages/FaqPage"))
-const NotFound = lazy(() => import("./components/Pages/NotFound"))
-const About = lazy(() => import("./components/Pages/About"))
-const Contact = lazy(() => import("./components/Pages/Contact"))
-const Courses = lazy(() => import("./components/Pages/Courses"))
-const Blog = lazy(() => import("./components/Pages/Blog"))
-const ForgetPassword = lazy(() => import("./components/Pages/ForgetPassword"))
-const Blogdetails = lazy(() => import("./components/Pages/Blogdetails"))
-const Dashboard = lazy(() => import("./components/Dashboard/Layout"))
+const Home = lazy(() => import("./components/Pages/home/Home"))
+const Course = lazy(() => import("./components/Pages/course/Course"))
+const Onboard = lazy(() => import("./components/Pages/onBoard/Onboard"))
+const Login = lazy(() => import("./components/Pages/login/Login"))
+const Hire = lazy(() => import("./components/Pages/hire/Hire"))
+const Calendar = lazy(() => import("./components/Pages/calendar/Calendar"))
+const Faq = lazy(() => import("./components/Pages/faq/FaqPage"))
+const NotFound = lazy(() => import("./components/Pages/notFound/NotFound"))
+const About = lazy(() => import("./components/Pages/about/About"))
+const Contact = lazy(() => import("./components/Pages/contact/Contact"))
+const Courses = lazy(() => import("./components/Pages/course/Courses"))
+const Blog = lazy(() => import("./components/Pages/blog/Blog"))
+const ForgetPassword = lazy(() => import("./components/Pages/forgetPwd/ForgetPassword"))
+const Blogdetails = lazy(() => import("./components/Pages/blog/Blogdetails"))
+const Dashboard = lazy(() => import("./components/Dashboard/layout/Layout"))
 
 
 

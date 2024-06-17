@@ -1,0 +1,81 @@
+.home .banner{
+    background-image: url(../../../assets/Vector\ 4.png);
+    background-size: contain;
+    width: 100vw;
+    background-position: center;
+    background-repeat: repeat-x ;
+  
+    
+}
+
+.home .banner .col-md-6 img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.home .cards img{
+    width: 1.3rem;
+    height: 1.3rem;
+    object-fit:contain
+}
+
+.home .cards .card{
+    box-shadow: 2px 2px 3px #0D6EFD;
+    height: 17rem;
+}
+
+.home .event{
+    background-color: #F1EFFF;
+}
+
+.home .event .doubleline{
+display: block;
+margin: -7rem auto;
+
+transform: rotate(90deg);
+}
+
+
+.home .next-cohort{
+    box-shadow: 0.6rem 0.6rem 1rem #000066;
+}
+
+
+
+
+.home .viewall{
+    width: fit-content;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 2rem;
+    box-shadow: 0 5px 3px #333;
+}
+
+.home .viewall p, .home .viewall svg{
+    color: #000066;
+    font-weight: bold;
+}
+
+.home .faq{
+    background: linear-gradient(104.24deg, #000066 22.75%, #0D6EFD 168.68%);
+}
+
+.home .faq .doubleline{
+    display: block;
+    margin: -7rem auto -4rem;
+    transform: rotate(90deg);
+}
+ div[data-aos]{
+    overflow-x: hidden!important;
+ }
+
+
+@media (max-width: 768px) {
+    .home .banner{
+       
+        background-size: cover;
+        
+        background-repeat: no-repeat;
+        
+    }
+}
