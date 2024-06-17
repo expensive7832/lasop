@@ -1,11 +1,11 @@
 import React, { lazy, Suspense, useLayoutEffect, useState } from 'react';
-import { BrowserRouter , Routes, Route,  Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "aos/dist/aos.js"
 import "aos/dist/aos.css"
 import AOS from "aos"
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import AdminRegister from './components/SignupFIles/AdminRegister';
 import StaffRegister from './components/SignupFIles/StaffRegister';
@@ -30,37 +30,37 @@ const Dashboard = lazy(() => import("./components/Dashboard/layout/Layout"))
 
 
 function App() {
-  
+
   const [currentChrtWeekDay, setCurrentChrtWeekDay] = useState("")
   const [currentChrtWeekend, setCurrentChrtWeekend] = useState("")
   const [currentChrtOnline, setCurrentChrtOnline] = useState("")
 
 
 
-  useLayoutEffect(() =>{
+  useLayoutEffect(() => {
     AOS.init({
       duration: 3000,
       easing: 'ease-in-out',
       delay: 100,
     })
 
-   
+
   }, [])
 
-  useLayoutEffect(() =>{
+  useLayoutEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/getcohort`)
-    .then((res) => {
-     
-      let online = res?.data?.filter((each) => each.mode == "online").pop().start
-      let weekday = res?.data?.filter((each) => each.mode == "weekday").pop().start
-      let weekend = res?.data?.filter((each) => each.mode == "weekend").pop().start
+      .then((res) => {
 
-      setCurrentChrtOnline(online)
-      setCurrentChrtWeekDay(weekday)
-      setCurrentChrtWeekend(weekend)
-      
-    } )
-    .catch((err) => console.log(err))
+        let online = res?.data?.filter((each) => each.mode == "online").pop().start
+        let weekday = res?.data?.filter((each) => each.mode == "weekday").pop().start
+        let weekend = res?.data?.filter((each) => each.mode == "weekend").pop().start
+
+        setCurrentChrtOnline(online)
+        setCurrentChrtWeekDay(weekday)
+        setCurrentChrtWeekend(weekend)
+
+      })
+      .catch((err) => console.log(err))
   }, [])
 
 
@@ -68,37 +68,32 @@ function App() {
   return (
     <Suspense fallback={
       <div className='anime position-absolute top-50 start-50  translate-middle '>
-        <img style={{width: "5rem", objectFit: "contain"}} src="./../images/logo.png" alt="logo" />
+        <img style={{ width: "5rem", objectFit: "contain" }} src="./../images/logo.png" alt="logo" />
       </div>
     }>
       <BrowserRouter>
-
-      
-       <Routes>
-          <Route path="/" element={<Home currentChrtOnline={currentChrtOnline} currentChrtWeekend={currentChrtWeekend} currentChrtWeekDay={currentChrtWeekDay} />}/>
-          <Route path="*" element={ <NotFound/> }/>
-          <Route path="/login" element={ <Login/> }/>
-          <Route path="/signup" element={ <Onboard/> }/>
-          <Route path="/adminregister" element={ <AdminRegister/> }/>
+        <Routes>
+          <Route path="/" element={<Home currentChrtOnline={currentChrtOnline} currentChrtWeekend={currentChrtWeekend} currentChrtWeekDay={currentChrtWeekDay} />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Onboard />} />
+          <Route path="/adminregister" element={<AdminRegister />} />
           <Route path="/staff" element={<StaffRegister />} />
-          <Route path="/forgetpassword" element={ <ForgetPassword/> }/>
-          <Route path="/hire" element={ <Hire/> }/>
-          <Route path="/courses" element={ <Courses/> }/>
-          <Route path="/calendar" element={ <Calendar/> }/>
-          <Route path="/faq" element={ <Faq/> }/>
-          <Route path="/contact" element={ <Contact/> }/>
-          <Route path="/about" element={ <About/> }/>
-          <Route path="/blog" element={ <Blog /> }/>
-          <Route path="/blog/:id" element={<Blogdetails/>}/>
-          <Route path="/course/:title" element={<Course currentChrtOnline={currentChrtOnline} currentChrtWeekend={currentChrtWeekend} currentChrtWeekDay={currentChrtWeekDay} />}/>
-          <Route path="/dashboard/:text/?" element={<Dashboard/>}/>
+          <Route path="/forgetpassword" element={<ForgetPassword />} />
+          <Route path="/hire" element={<Hire />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<Blogdetails />} />
+          <Route path="/course/:title" element={<Course currentChrtOnline={currentChrtOnline} currentChrtWeekend={currentChrtWeekend} currentChrtWeekDay={currentChrtWeekDay} />} />
+          <Route path="/dashboard/:text/?" element={<Dashboard />} />
         </Routes>
-
-        
-      
       </BrowserRouter>
       <ToastContainer
-      position='top-center'
+        position='top-center'
       />
     </Suspense>
   );
