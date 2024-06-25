@@ -9,3 +9,24 @@
     background-color: rgb(100, 100, 255);
     color: #ffffff;
 }
+
+.tandc {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.437);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    padding: 3rem;
+    border-radius: 0 !important;
+    overflow: hidden;
+}
+
+.show_terms {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    height: 90vh;
+    overflow-y: scroll;
+}

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addData, setPage, goBack, setId } from '../../Redux/Slices/onboardslice';
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { usePaystackPayment } from 'react-paystack';
 import { useNavigate } from 'react-router-dom';
 
 function Second() {
@@ -15,10 +16,17 @@ function Second() {
 
   const storedata = useSelector(state => state.onboard.userData)
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  // Payment function
+  const config = {
+    reference: (new Date()).getTime().toString(),
+    email: storedata.email,
+    amount: 200000 * 100,
+    publicKey: process.env.REACT_APP_PAYSTACK_SECRET_KEY
+  }
+
+  const onSuccess = (e) => {
     setLoading(true)
     const form = new FormData(e.currentTarget);
 
@@ -45,7 +53,7 @@ function Second() {
       photo: storedata.photo,
     }
 
-    await axios.post(`https://lasopbackend.net/register`, registerData, {
+    axios.post(`https://lasopbackend.net/register`, registerData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -63,6 +71,64 @@ function Second() {
       })
 
     dispatch(addData(data))
+  };
+
+  const onClose = (error) => {
+    setLoading(false);
+    toast.error('Payment failed');
+    console.error(error);
+  }
+
+  //initialize payment configuration
+  const initializePayment = usePaystackPayment(config);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    // setLoading(true)
+    // const form = new FormData(e.currentTarget);
+
+    // const data = {
+    //   course: form.get("course"),
+    //   cohort: form.get("cohort"),
+    //   center: form.get("center"),
+    //   study: form.get("study"),
+    //   agreement: form.get("agreement"),
+    // }
+
+    // let registerData = {
+    //   course: data.course,
+    //   cohort: data.cohort,
+    //   center: data.center,
+    //   mos: data.study,
+    //   agreement: data.agreement,
+    //   fname: storedata.fname,
+    //   lname: storedata.lname,
+    //   email: storedata.email,
+    //   password: storedata.pwd,
+    //   phone: storedata.phone,
+    //   loc: storedata.location,
+    //   photo: storedata.photo,
+    // }
+
+    // await axios.post(`https://lasopbackend.net/register`, registerData, {
+    //   headers: {
+    //     "Content-Type": "multipart/form-data"
+    //   }
+    // })
+    //   .then((res) => {
+    //     setLoading(false)
+    //     toast.success(res?.data?.message);
+    //     dispatch(setId(res?.data?.info?.id));
+
+    //     navigate("/login");
+    //   })
+    //   .catch((err) => {
+    //     setLoading(false);
+    //     toast.warn(err?.response?.data?.message);
+    //   })
+
+    // dispatch(addData(data))
+    initializePayment(onSuccess, onClose);
   }
 
   const [courses, setCourses] = useState(null);

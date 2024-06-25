@@ -16,16 +16,15 @@ function Onboard() {
 
   return (
     <>
-      <div className="onboard container" data-aos="slide-up" data-aos-duration="3000" >
+      <div className="onboard" data-aos="slide-up" data-aos-duration="3000" >
         <div className="row">
           <div className="">
             <Stepper
               className=''
               steps={[{ label: 'Step 1', className: `${page === 1 ? "bg-primary" : ""}` }, { label: 'Step 2', className: `${page === 2 ? "stepActive" : ""}` }, { label: 'Step 3', className: `${page === 3 ? "stepActive" : ""}` }]}
               activeStep={page}
-              bgColor="#000"
+              bgcolor="#000"
             />
-
             {
               page === 1 ?
                 <First />

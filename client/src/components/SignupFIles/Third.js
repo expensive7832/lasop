@@ -12,24 +12,17 @@ import { useNavigate } from 'react-router-dom'
 import { activatePayment } from '../../Redux/Slices/userSlice'
 
 function Third() {
-
   const navigate = useNavigate()
-
 
   const dispatch = useDispatch()
   const userinfo = useSelector((state) => state?.onboard?.userData)
   const token = useSelector((state) => state?.user?.token)
   let id = useSelector((state) => state?.onboard?.id)
 
-
   // alert(token)
-
   let user = useSelector((state) => state?.user)
 
-  const [loading, setLoading] = useState(false)
-
-
- 
+  const [loading, setLoading] = useState(false) 
 
   const handleSubmit = async (e) => {
     e.preventDefault()

@@ -127,12 +127,14 @@ function First() {
 
                 {
                   showTandC &&
-                  <div className='position-fixed tandc top-25 start-50  translate-middle p-3 bg-white shadow-lg '>
-                    <div onClick={() => setTandC(false)} className="closeT">
-                      <IoMdClose />
+                  <div className='position-fixed tandc'>
+                    <div className="show_terms">
+                      <div onClick={() => setTandC(false)} className="closeT">
+                        <IoMdClose />
+                      </div>
+                      <PreviewTandC />
+                      <button className='my-3 btn btn-secondary w-100'>Agree terms and conditions</button>
                     </div>
-                    <PreviewTandC />
-                    <button className='my-3 btn btn-secondary w-100'>Agree terms and conditions</button>
                   </div>
                 }
               </div>

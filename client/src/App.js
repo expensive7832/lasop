@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import AdminRegister from './components/SignupFIles/AdminRegister';
 import StaffRegister from './components/SignupFIles/StaffRegister';
+import PreviewTandC from './components/previewTermsAndCondition/PreviewTandC';
 
 
 const Home = lazy(() => import("./components/Pages/home/Home"))
@@ -71,30 +72,33 @@ function App() {
         <img style={{ width: "5rem", objectFit: "contain" }} src="./../images/logo.png" alt="logo" />
       </div>
     }>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home currentChrtOnline={currentChrtOnline} currentChrtWeekend={currentChrtWeekend} currentChrtWeekDay={currentChrtWeekDay} />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Onboard />} />
-          <Route path="/adminregister" element={<AdminRegister />} />
-          <Route path="/staff" element={<StaffRegister />} />
-          <Route path="/forgetpassword" element={<ForgetPassword />} />
-          <Route path="/hire" element={<Hire />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<Blogdetails />} />
-          <Route path="/course/:title" element={<Course currentChrtOnline={currentChrtOnline} currentChrtWeekend={currentChrtWeekend} currentChrtWeekDay={currentChrtWeekDay} />} />
-          <Route path="/dashboard/:text/?" element={<Dashboard />} />
-        </Routes>
-      </BrowserRouter>
-      <ToastContainer
-        position='top-center'
-      />
+      <div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home currentChrtOnline={currentChrtOnline} currentChrtWeekend={currentChrtWeekend} currentChrtWeekDay={currentChrtWeekDay} />} />
+            <Route path='terms' element={<PreviewTandC />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Onboard />} />
+            <Route path="/adminregister" element={<AdminRegister />} />
+            <Route path="/staff" element={<StaffRegister />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/hire" element={<Hire />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<Blogdetails />} />
+            <Route path="/course/:title" element={<Course currentChrtOnline={currentChrtOnline} currentChrtWeekend={currentChrtWeekend} currentChrtWeekDay={currentChrtWeekDay} />} />
+            <Route path="/dashboard/:text/?" element={<Dashboard />} />
+          </Routes>
+        </BrowserRouter>
+        <ToastContainer
+          position='top-center'
+        />
+      </div>
     </Suspense>
   );
 }

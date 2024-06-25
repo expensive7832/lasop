@@ -40,7 +40,6 @@ const AdminRegister = () => {
 
   return (
     <div className="adminregister">
-      <Navbar />
       <main className="d-flex container  justify-content-center align-items-center p-5 ">
         <div className="row">
         <form onSubmit={handleSubmit} className="shadow shadow-dark rounded-4 ">
@@ -81,7 +80,6 @@ const AdminRegister = () => {
             </form>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
