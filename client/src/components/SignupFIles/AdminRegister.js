@@ -6,6 +6,24 @@ import { Spinner } from "reactstrap";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+// const form = new FormData(e.currentTarget)
+
+// const data = {
+//   fname: form.get("fname"),
+//   lname: form.get("lname"),
+//   email: form.get("email"),
+//   phone: form.get("phone"),
+//   location: form.get("loc"),
+//   pwd: form.get("pwd"),
+//   cpwd: form.get("cpwd"),
+//   photo: form.get("photo"),
+// }
+
+// if (data.fname === "" || data.lname === "" || data.email === "" || data.pwd === "") {
+
+//   toast.warn("Please enter missing field")
+// }
+
 const AdminRegister = () => {
 
     const navigate = useNavigate()

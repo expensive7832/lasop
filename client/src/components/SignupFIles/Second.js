@@ -1,18 +1,27 @@
-import React, { useLayoutEffect, useState } from 'react';
-import { BsArrowLeftCircle, BsArrowLeftSquare, BsArrowRightCircle, BsArrowRightSquare } from "react-icons/bs";
+import React, { useLayoutEffect, useState, useEffect } from 'react';
+import { FaArrowLeft } from "react-icons/fa";
 import "./../Pages/login/login.css";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, Spinner } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
+// import { animateScroll as scroll } from 'react-scroll';
 import { addData, setPage, goBack, setId } from '../../Redux/Slices/onboardslice';
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { usePaystackPayment } from 'react-paystack';
 import { useNavigate } from 'react-router-dom';
+import './terms.css'
 
 function Second() {
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   scroll.scrollToTop({
+  //     duration: 1000,
+  //     smooth: 'easeInOutQuint',
+  //   });
+  // }, []);
 
   const storedata = useSelector(state => state.onboard.userData)
 
@@ -23,16 +32,29 @@ function Second() {
     reference: (new Date()).getTime().toString(),
     email: storedata.email,
     amount: 200000 * 100,
-    publicKey: process.env.REACT_APP_PAYSTACK_SECRET_KEY
+    publicKey: 'pk_test_8b50893a5891d0e9440ac570f6c142448d2161e3'
   }
 
   const onSuccess = (e) => {
+  };
+
+  const onClose = (error) => {
+    setLoading(false);
+    toast.error('Payment failed');
+    console.error(error);
+  }
+
+  //initialize payment configuration
+  const initializePayment = usePaystackPayment(config);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
     setLoading(true)
     const form = new FormData(e.currentTarget);
 
     const data = {
       course: form.get("course"),
-      cohort: form.get("cohort"),
       center: form.get("center"),
       study: form.get("study"),
       agreement: form.get("agreement"),
@@ -63,7 +85,8 @@ function Second() {
         toast.success(res?.data?.message);
         dispatch(setId(res?.data?.info?.id));
 
-        navigate("/login");
+        // navigate("/login");
+        dispatch(setPage())
       })
       .catch((err) => {
         setLoading(false);
@@ -71,70 +94,11 @@ function Second() {
       })
 
     dispatch(addData(data))
-  };
-
-  const onClose = (error) => {
-    setLoading(false);
-    toast.error('Payment failed');
-    console.error(error);
-  }
-
-  //initialize payment configuration
-  const initializePayment = usePaystackPayment(config);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    // setLoading(true)
-    // const form = new FormData(e.currentTarget);
-
-    // const data = {
-    //   course: form.get("course"),
-    //   cohort: form.get("cohort"),
-    //   center: form.get("center"),
-    //   study: form.get("study"),
-    //   agreement: form.get("agreement"),
-    // }
-
-    // let registerData = {
-    //   course: data.course,
-    //   cohort: data.cohort,
-    //   center: data.center,
-    //   mos: data.study,
-    //   agreement: data.agreement,
-    //   fname: storedata.fname,
-    //   lname: storedata.lname,
-    //   email: storedata.email,
-    //   password: storedata.pwd,
-    //   phone: storedata.phone,
-    //   loc: storedata.location,
-    //   photo: storedata.photo,
-    // }
-
-    // await axios.post(`https://lasopbackend.net/register`, registerData, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data"
-    //   }
-    // })
-    //   .then((res) => {
-    //     setLoading(false)
-    //     toast.success(res?.data?.message);
-    //     dispatch(setId(res?.data?.info?.id));
-
-    //     navigate("/login");
-    //   })
-    //   .catch((err) => {
-    //     setLoading(false);
-    //     toast.warn(err?.response?.data?.message);
-    //   })
-
-    // dispatch(addData(data))
-    initializePayment(onSuccess, onClose);
   }
 
   const [courses, setCourses] = useState(null);
   const [mos, setmos] = useState(null);
   const [center, setCenter] = useState(null);
-  const [cohort, setCohort] = useState(null);
 
   useLayoutEffect(() => {
     axios.get(`https://lasopbackend.net/getcourse`)
@@ -149,59 +113,42 @@ function Second() {
       .then((res) => setCenter(res?.data))
       .catch((err) => console.log(err))
 
-    axios.get(`https://lasopbackend.net/getchort`)
-      .then((res) => setCohort(res?.data))
-      .catch((err) => console.log(err))
-
   }, [])
 
   return (
     <div data-aos="fade-zoom-in" className="login d-flex flex-column justify-content-center align-items-center">
       <div className="container-fluid">
-        <div className="d-flex justify-content-evenly">
-          <button className='btn btn-md btn-dark' onClick={() => dispatch(goBack())}>
-            <BsArrowLeftSquare />
-          </button>
-          <button className='btn btn-md btn-dark' onClick={() => dispatch(setPage())}>
-            <BsArrowRightSquare />
-          </button>
+        <div className=" arrow" onClick={() => dispatch(goBack())}>
+          <FaArrowLeft />
         </div>
 
         <div className="p-md-5 ">
-          <p className='heading my-3'>Start Your Application</p>
+          <p className='heading my-3'>Continue Your Application</p>
           <small>step 2/3</small>
 
           <div className="loginform p-4 ">
-            <p>Course Of Study</p>
+            <p className='h5'>Course Of Study</p>
 
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="my-1">
-                <div className="form-label d-block">Course</div>
-                <select className="form-control" name="course"  >
+                <div className="form-label d-block h6">Course</div>
+                <select className="form-control select" name="course"  >
                   {courses?.map(course => (
                     <option value={course?.id}>{course?.title}</option>
                   ))}
                 </select>
               </div>
               <div className="my-1">
-                <div className="form-label d-block">Cohort</div>
-                <select className="form-control" name="cohort"  >
-                  {cohort?.map(coh => (
-                    <option value={coh?.id}>{coh?.title}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="my-1">
-                <div className="form-label d-block">Center</div>
-                <select className="form-control" name="center"  >
+                <div className="form-label d-block h6">Center</div>
+                <select className="form-control select" name="center"  >
                   {center?.map(cent => (
                     <option value={cent?.id}>{cent?.title}</option>
                   ))}
                 </select>
               </div>
               <div className="my-1">
-                <div className="form-label d-block">Mode Of Study</div>
-                <select className="form-control" name="study" >
+                <div className="form-label d-block h6">Mode Of Study</div>
+                <select className="form-control select" name="study" >
                   {mos?.map(m => (
                     <option value={m?.id}>{m?.title}</option>
                   ))}

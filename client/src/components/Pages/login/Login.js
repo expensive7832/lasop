@@ -107,7 +107,6 @@ function Login() {
 
   return (
     <>
-      <Navbar />
       <div  className="login d-flex flex-column justify-content-center align-items-center">
         <div className="container-fluid">
 
@@ -232,8 +231,6 @@ function Login() {
 
 
       </div>
-
-      <Footer />
     </>
   )
 }
