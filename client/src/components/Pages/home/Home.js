@@ -28,39 +28,39 @@ import CallToAction from "../../common/cta/CallToAction"
 import { useSelector } from 'react-redux'
 import { FaArrowRight } from 'react-icons/fa'
 
-const Home = ({currentChrtWeekDay, currentChrtWeekend, currentChrtOnline}) => {
+const Home = ({ currentChrtWeekDay, currentChrtWeekend, currentChrtOnline }) => {
 
   const navigate = useNavigate()
 
   let user = useSelector((state) => state?.user)
 
   const [load, setLoad] = useState(0)
-  
 
 
- useEffect(() =>{
 
-  // if(user?.login === true && user?.info?.role === 'admin') {
-  //   navigate("/dashboard/home")
+  useEffect(() => {
 
-  // }else if(user?.login === true && user?.info?.role != 'admin'){
-  //   navigate("/dashboard/syllabus")
-  // }
+    // if(user?.login === true && user?.info?.role === 'admin') {
+    //   navigate("/dashboard/home")
 
- }, [])
- 
+    // }else if(user?.login === true && user?.info?.role != 'admin'){
+    //   navigate("/dashboard/syllabus")
+    // }
+
+  }, [])
+
   const [blogData, setBlogData] = useState([])
 
-  
 
-useLayoutEffect(() =>{
-  axios.get(`${process.env.REACT_APP_API_URL}/getarticles`)
-  .then((res) => {
-    setBlogData(res?.data?.article?.slice(0, 4))
-  } )
-  .catch((err) => console.log(err))
-}, [])
- 
+
+  useLayoutEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/getarticles`)
+      .then((res) => {
+        setBlogData(res?.data?.article?.slice(0, 4))
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
 
   const cardsData = [
     {
@@ -68,15 +68,16 @@ useLayoutEffect(() =>{
       info: "Learn to create professional, responsive websites using HTML, CSS, Bootstrap, JavaScript, JQuery, React, Python, Django & SQL.",
       index: 2,
       img: "full.png",
-      slug: "fullstack"
-
+      slug: "fullstack",
+      link: '/course/fullstack'
     },
     {
       title: "mobile app development",
       info: "Learn to create mobile UI designs with native frameworks or cross-platform frameworks, React Native, Flutter",
       index: 4,
       img: "mob.png",
-      slug: "App Development"
+      slug: "App Development",
+      link: '/course/Mobile%20App'
 
     },
     {
@@ -84,28 +85,32 @@ useLayoutEffect(() =>{
       info: "Learn to create professional, responsive websites using HTML, CSS, Bootstrap, JavaScript, JQuery, React, & SQL.",
       index: 1,
       img: "full.png",
-      slug: "frontend"
+      slug: "frontend",
+      link: '/course/Frontend'
     },
     {
       title: "backend development",
       info: "Learn Python, and its framework Django. Or  Node and Express.NET if your interest is to become a Nodejs developer.",
       index: 3,
       img: "backend.png",
-      slug: "backend"
+      slug: "backend",
+      link: '/course/Backend'
     },
     {
       title: "UI/UX design",
       info: "Learn design thinking, wireframes, interactive prototyping. Earn a UX design certification to accelerate your career with cutting-edge skills.",
       index: 0,
       img: "ui.png",
-      slug: "Product Design"
+      slug: "Product Design",
+      link: '/course/Product%20Design'
     },
     {
       title: "Data science and AI",
       info: "Dive into prescriptive and predictive analytics, machine learning, artificial intelligence, statistical analysis, and programming languages.",
       index: 5,
       img: "ds.png",
-      slug: "data-science & ai"
+      slug: "data-science & ai",
+      link: '/course/Data%20Analytics'
     },
   ]
 
@@ -138,22 +143,22 @@ useLayoutEffect(() =>{
           </div>
         </div>
 
-      
+
 
         <div data-aos="zoom-in-up" className="next-cohort w-75 m-auto p-3 my-5 rounded border border-primary ">
           <div className="row align-items-center justify-content-between">
             <div className="col-md-5 col-12 d-flex justify-content-between align-items-center">
               <div className=''>
-              <sup>weekday</sup>
+                <sup>weekday</sup>
                 <h6 className='small'><BiCalendar /> Next cohort starts:</h6>
                 <h4>
                   {new Date(currentChrtWeekDay).toLocaleDateString("default", {
                     day: "numeric"
                   })}
 
-                  &nbsp; 
-                  {new Date(currentChrtWeekDay).toLocaleString('default', { month: 'long', year:"numeric" })} 
-                 </h4>
+                  &nbsp;
+                  {new Date(currentChrtWeekDay).toLocaleString('default', { month: 'long', year: "numeric" })}
+                </h4>
                 <h6 className='small'>9:00am - 2:00pm WAT</h6>
               </div>
               <button className="btn-sm btn btn-primary">
@@ -171,7 +176,7 @@ useLayoutEffect(() =>{
               <FaArrowRight size={26} />
 
               <Link to="/calendar" className="mb-2 nav-link border border-primary text-center p-md-2 p-1 small text-primary rounded">
-              see all cohort
+                see all cohort
               </Link>
             </div>
           </div>
@@ -181,16 +186,16 @@ useLayoutEffect(() =>{
           <div className="row align-items-center justify-content-between">
             <div className="col-md-5 col-12 d-flex justify-content-between align-items-center">
               <div className=''>
-              <sup>weekend</sup>
+                <sup>weekend</sup>
                 <h6 className='small'><BiCalendar /> Next cohort starts:</h6>
                 <h4>
                   {new Date(currentChrtWeekend).toLocaleDateString("default", {
                     day: "2-digit",
-                    
+
                   })}
-                  &nbsp; 
-                  {new Date(currentChrtWeekend).toLocaleString('default', { month: 'long', year: "numeric" })} 
-                 </h4>
+                  &nbsp;
+                  {new Date(currentChrtWeekend).toLocaleString('default', { month: 'long', year: "numeric" })}
+                </h4>
                 <h6 className='small'>9:00am - 2:00pm WAT</h6>
               </div>
               <button className="btn-sm btn btn-primary">
@@ -208,12 +213,12 @@ useLayoutEffect(() =>{
               <FaArrowRight size={26} />
 
               <Link to="/calendar" className="mb-2 nav-link border border-primary text-center p-md-2 p-1 small text-primary rounded">
-              see all cohort
+                see all cohort
               </Link>
             </div>
           </div>
         </div>
-        
+
         <div data-aos="zoom-in-up" className="next-cohort w-75 m-auto p-3 my-5 rounded border border-primary ">
           <div className="row align-items-center justify-content-between">
             <div className="col-md-5 col-12 d-flex justify-content-between align-items-center">
@@ -224,9 +229,9 @@ useLayoutEffect(() =>{
                   {new Date(currentChrtOnline).toLocaleDateString("default", {
                     day: "2-digit"
                   })}
-                  &nbsp; 
-                  {new Date(currentChrtOnline).toLocaleString('default', { month: 'long', year:"numeric" })} 
-                 </h4>
+                  &nbsp;
+                  {new Date(currentChrtOnline).toLocaleString('default', { month: 'long', year: "numeric" })}
+                </h4>
                 <h6 className='small'>9:00am - 2:00pm WAT</h6>
               </div>
               <button className="btn-sm btn btn-primary">
@@ -244,7 +249,7 @@ useLayoutEffect(() =>{
               <FaArrowRight size={26} />
 
               <Link to="/calendar" className="mb-2 nav-link border border-primary text-center p-md-2 p-1 small text-primary rounded">
-              see all cohort
+                see all cohort
               </Link>
             </div>
           </div>
@@ -260,7 +265,7 @@ useLayoutEffect(() =>{
         <div data-aos="zoom-in-up" className="cards container p-4">
           <div className="row gap-md-0 gap-4">
             {cardsData?.map((data, i) => (
-              <div key={i} className="col-md-6 col-lg-4 p-2">
+              <Link to={data.link} key={i} className="col-md-6 col-lg-4 p-2">
                 <div className="card p-3">
                   <img src={`./../../../images/${data?.img}`} alt={data?.title} className="card-img-top img-fluid" />
                   <h5 className='my-3 text-capitalize '>{data?.title}</h5>
@@ -270,73 +275,73 @@ useLayoutEffect(() =>{
                     <TbMathGreater color='#000066' />
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
         </div>
 
-       <div data-aos="zoom-in-down" className="learn_earn">
-       <LearnEarn/>
-       </div>
+        <div data-aos="zoom-in-down" className="learn_earn">
+          <LearnEarn />
+        </div>
 
-       <div className="ourprogram" data-aos="zoom-up">
-          <OurProgram/>
-       </div>
+        <div className="ourprogram" data-aos="zoom-up">
+          <OurProgram />
+        </div>
 
         <div className="advert p-5" data-aos="zoom-down">
-     <Advert/>
-     </div>
+          <Advert />
+        </div>
 
 
 
-     <div className="testimony" data-aos="zoom-in-up">
-      <Testimony/>
-     </div>
+        <div className="testimony" data-aos="zoom-in-up">
+          <Testimony />
+        </div>
 
-     <div className="faq p-md-5" data-aos="zoom-down">
+        <div className="faq p-md-5" data-aos="zoom-down">
 
-     <h4 className='text-center text-white text-capitalize '>frequently asked questions</h4>
-        <img src={doubleline} className='doubleline' alt="" />
+          <h4 className='text-center text-white text-capitalize '>frequently asked questions</h4>
+          <img src={doubleline} className='doubleline' alt="" />
 
-      <Faq/>
-     </div>
+          <Faq />
+        </div>
 
-     <div className="getstarted p-5" data-aos="">
-      <Getstarted/>
-     </div>
+        <div className="getstarted p-5" data-aos="">
+          <Getstarted />
+        </div>
 
-     <div className="event p-5" data-aos="zoom-down">
+        <div className="event p-5" data-aos="zoom-down">
 
-      <h5 className='text-center'>Upcoming Events, News and Blogs</h5>
+          <h5 className='text-center'>Upcoming Events, News and Blogs</h5>
 
-      <img className='doubleline' src={doubleline} alt="line" />
+          <img className='doubleline' src={doubleline} alt="line" />
 
-      {blogData?.length !== 0 &&
-      <>
-      <Blogcard  blogdata={blogData}/>
-      
-       
-     <div className="d-flex ">
-     <div className='d-flex justify-content-center bg-white viewall my-4 my-md-0  '>
-        <Link to="/blog" className='me-3 nav-link'>View all blogs</Link>
-       {/* <div className="mt-0"> <FaArrowRight/></div> */}
+          {blogData?.length !== 0 &&
+            <>
+              <Blogcard blogdata={blogData} />
+
+
+              <div className="d-flex ">
+                <div className='d-flex justify-content-center bg-white viewall my-4 my-md-0  '>
+                  <Link to="/blog" className='me-3 nav-link'>View all blogs</Link>
+                  {/* <div className="mt-0"> <FaArrowRight/></div> */}
+                </div>
+
+
+              </div>
+
+            </>
+          }
+
+        </div>
       </div>
 
-    
-     </div>
 
-     </>
-    }
-
-     </div>
-      </div>
-
-    
-    <CallToAction/>
+      <CallToAction />
 
 
-      <Footer/>
+      <Footer />
     </div>
   )
 }
